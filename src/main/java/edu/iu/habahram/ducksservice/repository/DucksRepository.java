@@ -18,23 +18,21 @@ import java.util.List;
 @Component
 public class DucksRepository {
     public DucksRepository() {
-        try {
-            Path ducksDir = Paths.get("ducks");
-            Files.createDirectories(ducksDir);
-
-            Path imagesDir = Paths.get("ducks/images");
-            Files.createDirectories(imagesDir);
-
-            Path audioDir = Paths.get("ducks/audio");
-            Files.createDirectories(audioDir);
-
-            Path dbPath = Paths.get(DATABASE_NAME);
-            if (!Files.exists(dbPath)) {
-                Files.createFile(dbPath);
+        File ducksImagesDirectory = new File("ducks/images");
+        if(!ducksImagesDirectory.exists()) {
+            ducksImagesDirectory.mkdirs();
+        }
+        File ducksAudioDirectory = new File("ducks/audio");
+        if(!ducksAudioDirectory.exists()) {
+            ducksAudioDirectory.mkdirs();
+        }
+        File dbFile = new File("ducks/db.txt");
+        if (!dbFile.exists()) {
+            try {
+                dbFile.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to create db.txt file", e);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to initialize ducks storage", e);
         }
     }
 
