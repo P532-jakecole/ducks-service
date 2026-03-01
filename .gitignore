@@ -32,6 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-ducks/audio/*
-ducks/images/*
+src/main/resources/static/ducks/audio/*
+src/main/resources/static/ducks/images/*
 db.txt
